@@ -18,18 +18,8 @@ export type CustomContext = Context & AutoChatActionFlavor;
 
 const bot = new Bot<CustomContext>(Deno.env.get("TELEGRAM_TOKEN")!);
 
-const onlySuperAdmin =
-  <T extends Context>(superAdminId: number) =>
-  (ctx: T, next: NextFunction) => {
-    if (ctx.from?.id !== superAdminId) {
-      return;
-    }
-    return next();
-  };
-
 bot.api.config.use(autoRetry());
 bot.use(autoChatAction());
-bot.use(onlySuperAdmin(parseInt(Deno.env.get("USER_ID")!)));
 bot.use(start);
 bot.use(article);
 
