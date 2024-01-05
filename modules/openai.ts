@@ -12,8 +12,11 @@ export type Message = {
   content: string;
 };
 
-export async function ask(question: string, historyMessages: Message[], model: "gpt-3.5-turbo" | "gpt-4") {
-
+export async function ask(
+  question: string,
+  historyMessages: Message[],
+  model: "gpt-3.5-turbo" | "gpt-4"
+) {
   const res = await openai.chat.completions.create({
     messages: [
       {
@@ -28,7 +31,7 @@ export async function ask(question: string, historyMessages: Message[], model: "
     ],
     max_tokens: 512,
     temperature: 0.6,
-    model: Deno.env.get("DENO_DEPLOYMENT_ID") ? model : "gpt-3.5-turbo",
+    model,
   });
 
   return res.choices[0].message.content;

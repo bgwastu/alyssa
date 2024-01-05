@@ -1,5 +1,5 @@
 import { Composer } from "https://deno.land/x/grammy@v1.19.2/composer.ts";
-import { CustomContext } from "../bot.ts";
+import { CustomContext } from "../index.ts";
 import { getArticle } from "../modules/article.ts";
 import { Message, ask } from "../modules/openai.ts";
 import { InlineKeyboard } from "https://deno.land/x/grammy@v1.19.2/mod.ts";

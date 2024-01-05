@@ -1,18 +1,31 @@
-import { webhookCallback } from "https://deno.land/x/grammy@v1.19.2/mod.ts";
-import { Hono } from "https://deno.land/x/hono@v3.11.12/mod.ts";
-import bot from "./bot.ts";
+import { load } from "https://deno.land/std@0.209.0/dotenv/mod.ts";
+import {
+  Bot,
+  Context,
+  NextFunction,
+} from "https://deno.land/x/grammy@v1.19.2/mod.ts";
+import {
+  AutoChatActionFlavor,
+  autoChatAction,
+} from "https://deno.land/x/grammy_auto_chat_action@v0.1.1/mod.ts";
+import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry@1.1.1";
+import { composer as start } from "./commands/start.ts";
+import { composer as article } from "./commands/article.ts";
 
-const app = new Hono();
+await load({ export: true });
 
-// set telegram webhook
-if (Deno.env.get("DENO_DEPLOYMENT_ID")) {
-  const domain = Deno.env.get("DEPLOYMENT_URL");
-  bot.api.setWebhook(`${domain}/${bot.token}`);
-  app.post(`/${bot.token}`, webhookCallback(bot, "hono"));
-}
+export type CustomContext = Context & AutoChatActionFlavor;
 
-Deno.serve(app.fetch);
+const bot = new Bot<CustomContext>(Deno.env.get("TELEGRAM_TOKEN")!);
 
-if (!Deno.env.get("DENO_DEPLOYMENT_ID")) {
-  bot.start();
-}
+bot.api.config.use(autoRetry());
+bot.use(autoChatAction());
+bot.use(start);
+bot.use(article);
+
+bot.catch((err) => {
+  console.error("An error occurred:", err);
+});
+
+// use polling instead
+bot.start();
