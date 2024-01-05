@@ -20,18 +20,11 @@ const bot = new Bot<CustomContext>(Deno.env.get("TELEGRAM_TOKEN")!);
 
 bot.api.config.use(autoRetry());
 bot.use(autoChatAction());
-
-// group id whitelist
-const groupIds = Deno.env.get("GROUP_IDS")?.split(",") ?? [];
-const groupBot = bot
-  .chatType("group")
-  .filter((c) => groupIds.includes(String(c.chat?.id)));
-
-groupBot.use(start);
-groupBot.use(article);
+bot.use(start);
+bot.use(article);
 
 // check id
-groupBot.command("id", (ctx) => ctx.reply(String(ctx.chat?.id)));
+bot.command("id", (ctx) => ctx.reply(String(ctx.chat?.id)));
 
 bot.catch((err) => {
   console.error("An error occurred:", err);
