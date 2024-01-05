@@ -5,7 +5,7 @@
       "request": "launch",
       "name": "Launch Bot",
       "type": "node",
-      "program": "${workspaceFolder}/server.ts",
+      "program": "${workspaceFolder}/index.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/Users/wastu/.deno/bin/deno",
       "runtimeArgs": [
