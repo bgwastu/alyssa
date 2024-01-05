@@ -23,6 +23,9 @@ bot.use(autoChatAction());
 bot.use(start);
 bot.use(article);
 
+// check id
+bot.command("id", (ctx) => ctx.reply(String(ctx.chat?.id)));
+
 bot.catch((err) => {
   console.error("An error occurred:", err);
 });
