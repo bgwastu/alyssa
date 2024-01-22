@@ -36,12 +36,16 @@ export function parse(text: string): Date {
     throw new Error("you stupid or what, that date is in the past.");
   }
 
+  if (dayjs(date).isAfter(dayjs().add(20, "day"))) {
+    throw new Error("sorry, i have a bad memory, i can't remember that far.");
+  }
+
   return date;
 }
 
 export function listenReminder(bot: Bot<CustomContext>) {
   kv.listenQueue(async (reminder: Reminder) => {
-    const res = await bot.api.sendMessage(
+    await bot.api.sendMessage(
       reminder.telegramChatId,
       `*hey @${reminder.telegramUsername}, here's your reminder:*\n${reminder.message}\n`,
       {

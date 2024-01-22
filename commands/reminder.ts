@@ -9,7 +9,7 @@ export const composer = new Composer();
 
 // /reminder {message}, {natural date}
 // /reminder me at dinner party, tommorow at 10am
-composer.command("reminder", async (context) => {
+composer.command("reminder", (context) => {
   try {
     const text = context.match;
     if (text.length === 0) {
