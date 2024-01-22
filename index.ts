@@ -1,20 +1,17 @@
 import { load } from "https://deno.land/std@0.209.0/dotenv/mod.ts";
 import {
   Bot,
-  Context,
-  NextFunction,
+  Context
 } from "https://deno.land/x/grammy@v1.19.2/mod.ts";
 import {
   AutoChatActionFlavor,
   autoChatAction,
 } from "https://deno.land/x/grammy_auto_chat_action@v0.1.1/mod.ts";
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry@1.1.1";
-import { composer as start } from "./commands/start.ts";
 import { composer as article } from "./commands/article.ts";
 import { composer as reminder } from "./commands/reminder.ts";
+import { composer as start } from "./commands/start.ts";
 import { listenReminder } from "./modules/reminder.ts";
-import kv from "./lib/kv.ts";
-import type { Reminder } from "./modules/reminder.ts";
 
 await load({ export: true });
 
