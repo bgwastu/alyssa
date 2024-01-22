@@ -11,6 +11,10 @@ import {
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry@1.1.1";
 import { composer as start } from "./commands/start.ts";
 import { composer as article } from "./commands/article.ts";
+import { composer as reminder } from "./commands/reminder.ts";
+import { listenReminder } from "./modules/reminder.ts";
+import kv from "./lib/kv.ts";
+import type { Reminder } from "./modules/reminder.ts";
 
 await load({ export: true });
 
@@ -22,6 +26,8 @@ bot.api.config.use(autoRetry());
 bot.use(autoChatAction());
 bot.use(start);
 bot.use(article);
+bot.use(reminder);
+listenReminder(bot);
 
 // check id
 bot.command("id", (ctx) => ctx.reply(String(ctx.chat?.id)));
@@ -29,6 +35,7 @@ bot.command("id", (ctx) => ctx.reply(String(ctx.chat?.id)));
 bot.catch((err) => {
   console.error("An error occurred:", err);
 });
+
 
 // use polling instead
 bot.start();
