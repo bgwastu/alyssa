@@ -8,4 +8,4 @@ ADD . /app
 
 RUN deno cache index.ts
 
-CMD ["run", "--allow-all", "--unstable-kv", "index.ts"]
+CMD ["run", "--allow-all", "--unstable", "index.ts"]
