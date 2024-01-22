@@ -48,7 +48,5 @@ export function listenReminder(bot: Bot<CustomContext>) {
         parse_mode: "Markdown",
       }
     );
-
-    console.log(res);
   });
 }
