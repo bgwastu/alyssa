@@ -11,6 +11,7 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry@1.1.1";
 import { composer as article } from "./commands/article.ts";
 import { composer as reminder } from "./commands/reminder.ts";
 import { composer as start } from "./commands/start.ts";
+import { composer as cleanurl } from "./commands/cleanurl.ts";
 import { listenReminder } from "./modules/reminder.ts";
 
 await load({ export: true });
@@ -24,6 +25,7 @@ bot.use(autoChatAction());
 bot.use(start);
 bot.use(article);
 bot.use(reminder);
+bot.use(cleanurl);
 listenReminder(bot);
 
 // check id
