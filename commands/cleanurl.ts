@@ -1,6 +1,6 @@
 import { Composer } from "https://deno.land/x/grammy@v1.19.2/composer.ts";
 import { CustomContext } from "../index.ts";
-import { TidyURL } from "npm:tidy-url";
+import { TidyURL } from "npm:@protontech/tidy-url";
 
 export const composer = new Composer<CustomContext>();
 

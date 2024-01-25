@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:@extractus/article-extractor": "npm:@extractus/article-extractor@8.0.4",
+      "npm:@protontech/tidy-url": "npm:@protontech/tidy-url@1.10.1",
       "npm:chrono-node": "npm:chrono-node@2.7.5",
       "npm:dayjs": "npm:dayjs@1.11.10",
       "npm:tidy-url": "npm:tidy-url@1.10.4"
@@ -20,6 +21,10 @@
       },
       "@mozilla/readability@0.4.4": {
         "integrity": "sha512-MCgZyANpJ6msfvVMi6+A0UAsvZj//4OHREYUB9f2087uXHVoU+H+SWhuihvb1beKpM323bReQPRio0WNk2+V6g==",
+        "dependencies": {}
+      },
+      "@protontech/tidy-url@1.10.1": {
+        "integrity": "sha512-kahmN3FUbzp0EKgWfEVmcwRAJcG3MG808eSVELT2jQz31sQEyQ7tN+SsNUB1r80MU59TLs/fgAJ78nAkiSufJg==",
         "dependencies": {}
       },
       "bellajs@11.1.2": {
